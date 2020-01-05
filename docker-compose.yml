@@ -1,0 +1,35 @@
+version: '3.3'
+
+networks:
+  coexistnetwork:
+
+services:  
+
+  discovery:
+    image: discovery   
+    build: ./discovery
+    container_name: discovery
+    env_file: api.env
+    ports:
+      - '33001:33001'
+    networks:
+      - coexistnetwork
+      
+  identity:
+    image: identity   
+    build: ./Identity
+    container_name: identity
+    env_file: api.env
+    ports:
+      - '33000:33000'
+    networks:
+      - coexistnetwork
+    depends_on:
+      - discovery
+      
+      
+  
+      
+      
+      
+

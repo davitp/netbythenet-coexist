@@ -1,0 +1,32 @@
+management:
+  security:  
+    enabled: false  
+    
+spring:
+  application:
+    name: discovery
+    
+server:
+  port: 33001
+  connection-timeout: 900000
+
+eureka:
+  instance:
+    hostname: discovery
+    leaseRenewalIntervalInSeconds: 10
+    prefer-ip-address: true
+    leaseExpirationDurationInSeconds: 3    
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+     defaultZone: ${NETBYTHENET_DISCOVERY_DEFAULT:http://localhost:33001/eureka}
+  server:
+    waitTimeInMsWhenSyncEmpty: 0  
+    peer-node-read-timeout-ms: 3000
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      ${NETBYTHENET_DISCOVERY_DEFAULT:http://localhost:33001/eureka}
+
+  

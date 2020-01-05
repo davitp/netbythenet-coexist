@@ -9,19 +9,11 @@
     }
   },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "api/values",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "auth": {
+    "identity": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
-      "applicationUrl": "http://localhost:5000",
+      "launchUrl": ".well-known/openid-configuration",
+      "applicationUrl": "http://localhost:33000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
