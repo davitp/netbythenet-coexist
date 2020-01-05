@@ -18,10 +18,9 @@ services:
   identity:
     image: identity   
     build: ./Identity
-    container_name: identity
     env_file: api.env
     ports:
-      - '33000:33000'
+      - '33002-33010:80'
     networks:
       - coexistnetwork
     depends_on:

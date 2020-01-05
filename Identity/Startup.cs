@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Identity.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -22,11 +23,15 @@ namespace Identity
 
             services.AddDiscoveryClient(this.Configuration);
 
-            services
+            var builder = services
                 .AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients());
+
+            builder.Services.AddSingleton<UserService>();
+            builder.AddProfileService<ExtendedProfileService>();
+            builder.AddResourceOwnerValidator<ExtendedResourceOwnerPasswordValidator>();
 
             services
                 .AddMvc()

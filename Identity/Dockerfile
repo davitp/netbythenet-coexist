@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine as base
 WORKDIR /identity
-EXPOSE 33000
+EXPOSE 80
 
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine as builder
@@ -20,5 +20,6 @@ FROM base AS final
 COPY ["appsettings.json", "/usr/share"]
 WORKDIR /app
 COPY --from=publish /result .
+
 
 ENTRYPOINT ["dotnet", "Identity.dll"]
