@@ -1,19 +1,24 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:15344",
-      "sslPort": 44350
+      "applicationUrl": "http://localhost:33002",
+      "sslPort": 0
     }
   },
   "profiles": {
-    "identity": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "FirstCoreWebApplication": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": ".well-known/openid-configuration",
-      "applicationUrl": "http://localhost:33000",
+      "applicationUrl": "http://localhost:33002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

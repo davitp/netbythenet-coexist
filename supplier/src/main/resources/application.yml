@@ -1,0 +1,41 @@
+management:
+  security:  
+    enabled: false  
+    
+spring:
+  application:
+    name: supplier
+  
+  jackson:
+   serialization:
+     write_dates_as_timestamps: false   
+      
+server:
+  port: 33011
+  connection-timeout: 900000
+  
+security:
+  oauth2:
+    client:
+      clientId: supplier_client
+      clientSecret: supplier_client_secret
+    resource:
+      token-info-uri: ${NETBYTHENET_TOKEN_CHECK_URL:connect/introspect}
+      preferTokenInfo: true
+      filter-order: 3
+  basic:
+    enabled: false
+
+ribbon:
+  eureka:
+   enabled: false
+
+eureka:
+  client:
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: ${NETBYTHENET_DISCOVERY_DEFAULT:http://discovery:33001/eureka}
+  instance:
+    preferIpAddress: true
+

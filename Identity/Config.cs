@@ -38,6 +38,25 @@ namespace Identity
                     AllowedScopes = { 
                         "read", "write" 
                     }
+                },
+
+                new Client
+                {
+                    ClientId = "supplier_client",
+        
+                    // no interactive user, use the clientid/secret for authentication
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+
+                    // secret for authentication
+                    ClientSecrets =
+                    {
+                        new Secret("supplier_client_secret".Sha256())
+                    },
+        
+                    AlwaysSendClientClaims = true,
+                    AllowedScopes = { 
+                        "read", "write" 
+                    }
                 }
             };
         }

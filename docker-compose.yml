@@ -19,12 +19,28 @@ services:
     image: identity   
     build: ./Identity
     env_file: api.env
+    container_name: identity
+    environment:
+      - INSTANCE_PORT=33002
     ports:
-      - '33002-33010:80'
+      - '33002:80'
     networks:
       - coexistnetwork
     depends_on:
       - discovery
+
+  supplier:
+    image: supplier   
+    build: ./supplier
+    container_name: supplier
+    env_file: api.env
+    ports:
+      - '33011:33011'
+    networks:
+      - coexistnetwork
+    depends_on:
+      - discovery
+      - identity
       
       
   
