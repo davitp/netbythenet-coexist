@@ -2,15 +2,21 @@ package net.netbythe.supplier.services;
 
 import com.google.gson.GsonBuilder;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import net.netbythe.supplier.domain.People;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 
 /**
  * The web resources service
@@ -35,14 +41,12 @@ public class PeopleService {
     */
     private static String getResourceFileAsString(String fileName, String defaultValue) {
         try {
-            ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-            try (InputStream is = classLoader.getResourceAsStream(fileName)) {
-                if (is == null) return null;
-                try (InputStreamReader isr = new InputStreamReader(is);
-                    BufferedReader reader = new BufferedReader(isr)) {
-                    return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-                }
-            }
+
+          Resource resource = new ClassPathResource("classpath:" + fileName);
+            InputStream inputStream = resource.getInputStream();
+            byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
+            return new String(bdata, StandardCharsets.UTF_8);
+           
         }
         catch(Throwable e){
             return defaultValue;

@@ -1,0 +1,33 @@
+management:
+  security:  
+    enabled: false  
+    
+spring:
+  application:
+    name: gateway
+   
+  cloud: 
+    gateway:
+      discovery:
+        locator: 
+          enabled: true
+          lowerCaseServiceId: true
+    
+server:
+  port: 33000
+  connection-timeout: 900000
+
+
+      
+eureka:
+  client:
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: ${NETBYTHENET_DISCOVERY_DEFAULT:http://localhost:33001/eureka}
+  instance:
+    preferIpAddress: true
+    
+    
+
+  

@@ -5,6 +5,16 @@ networks:
 
 services:  
 
+  gateway:
+    image: gateway   
+    build: ./gateway
+    container_name: gateway
+    env_file: api.env
+    ports:
+      - '33000:33000'
+    networks:
+      - coexistnetwork
+
   discovery:
     image: discovery   
     build: ./discovery

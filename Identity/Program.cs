@@ -12,6 +12,7 @@ namespace Identity
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://*:80", "http://*:33002")
                 .UseStartup<Startup>();
     }
 }

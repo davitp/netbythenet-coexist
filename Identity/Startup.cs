@@ -1,4 +1,5 @@
-﻿using Identity.Services;
+﻿using System.IdentityModel.Tokens.Jwt;
+using Identity.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -19,8 +20,7 @@ namespace Identity
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-
+        {            
             services.AddDiscoveryClient(this.Configuration);
 
             var builder = services
@@ -32,6 +32,7 @@ namespace Identity
             builder.Services.AddSingleton<UserService>();
             builder.AddProfileService<ExtendedProfileService>();
             builder.AddResourceOwnerValidator<ExtendedResourceOwnerPasswordValidator>();
+            builder.AddJwtBearerClientAuthentication();
 
             services
                 .AddMvc()

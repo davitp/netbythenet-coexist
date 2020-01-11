@@ -12,7 +12,8 @@ namespace Identity
             return new List<ApiResource>
             {
                 new ApiResource("supplier", "A .Net Core Application") {
-                    Scopes = new List<Scope> {new Scope("read"), new Scope("write")}
+                    Scopes = new List<Scope> {new Scope("supplier"), new Scope("read"), new Scope("write")},
+                    ApiSecrets = { new Secret("supplier_secret".Sha256()) }
                 }
             };
         }
@@ -36,26 +37,26 @@ namespace Identity
         
                     AlwaysSendClientClaims = true,
                     AllowedScopes = { 
-                        "read", "write" 
+                        "supplier", "read", "write" 
                     }
                 },
 
                 new Client
                 {
-                    ClientId = "supplier_client",
-        
+                    ClientId = "supplier",
+                    
                     // no interactive user, use the clientid/secret for authentication
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
 
                     // secret for authentication
                     ClientSecrets =
                     {
-                        new Secret("supplier_client_secret".Sha256())
+                        new Secret("supplier_secret".Sha256())
                     },
         
                     AlwaysSendClientClaims = true,
                     AllowedScopes = { 
-                        "read", "write" 
+                        "supplier", "read", "write" 
                     }
                 }
             };

@@ -29,7 +29,7 @@ public class PeopleController {
      * @return Returns set of people objects
      */
     @GetMapping(path = "")
-    @PreAuthorize("hasRole('ADMINISTRATOR')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAll(){
         return ResponseEntity.ok(this.peopleService.getAll());
     }

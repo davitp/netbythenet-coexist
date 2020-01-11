@@ -88,14 +88,14 @@ public class ResourceSecurityConfiguration extends ResourceServerConfigurerAdapt
      */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        
-        // token services
-        var tokenServices = new CustomTokenServices(eurekaClient);
-        
-        tokenServices.setClientId(this.clientId);
-        tokenServices.setClientSecret(this.clientSecret);
-        tokenServices.setCheckTokenEndpointUrl(this.tokenInfoUri);
-                
-        resources.tokenServices(tokenServices);
+        resources.resourceId("supplier");
+//        // token services
+//        var tokenServices = new CustomTokenServices(eurekaClient);
+//        
+//        tokenServices.setClientId(this.clientId);
+//        tokenServices.setClientSecret(this.clientSecret);
+//        tokenServices.setCheckTokenEndpointUrl(this.tokenInfoUri);
+//                
+//        resources.tokenServices(tokenServices);
     }
 }

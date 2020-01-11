@@ -17,10 +17,10 @@ server:
 security:
   oauth2:
     client:
-      clientId: supplier_client
-      clientSecret: supplier_client_secret
+      clientId: supplier
+      clientSecret: supplier_secret
     resource:
-      token-info-uri: ${NETBYTHENET_TOKEN_CHECK_URL:connect/introspect}
+      token-info-uri: ${NETBYTHENET_TOKEN_CHECK_URL:http://localhost:33000/identity/connect/introspect}
       preferTokenInfo: true
       filter-order: 3
   basic:
