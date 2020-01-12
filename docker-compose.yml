@@ -42,16 +42,30 @@ services:
   supplier:
     image: supplier   
     build: ./supplier
-    container_name: supplier
     env_file: api.env
     ports:
-      - '33011:33011'
+      - '33011-33019:33011'
     networks:
       - coexistnetwork
     depends_on:
       - discovery
       - identity
       
+  consumer:
+    image: consumer   
+    build: ./Consumer
+    container_name: consumer
+    environment:
+      - INSTANCE_PORT=33020
+    env_file: api.env
+    ports:
+      - '33020:80'
+    networks:
+      - coexistnetwork
+    depends_on:
+      - discovery
+      - identity
+      - supplier
       
   
       
